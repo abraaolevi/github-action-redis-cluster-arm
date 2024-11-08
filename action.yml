@@ -1,0 +1,47 @@
+name: "Redis Cluster (arm64v8)"
+description: "Setup Redis cluster with 3 master and 3 slave in a single container"
+branding:
+  icon: "database"
+  color: "red"
+inputs:
+  master1-port:
+    description: "Port number for master1"
+    required: false
+    default: 5000
+  master2-port:
+    description: "Port number for master2"
+    required: false
+    default: 5001
+  master3-port:
+    description: "Port number for master3"
+    required: false
+    default: 5002
+  slave1-port:
+    description: "Port number for slave1"
+    required: false
+    default: 5003
+  slave2-port:
+    description: "Port number for slave2"
+    required: false
+    default: 5004
+  slave3-port:
+    description: "Port number for slave3"
+    required: false
+    default: 5005
+  sleep-duration:
+    description: "Sleep duration in seconds"
+    required: false
+    default: 5
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    SLEEP_DURATION: ${{ inputs.sleep-duration }}
+  args:
+    - ${{ inputs.master1-port }}
+    - ${{ inputs.master2-port }}
+    - ${{ inputs.master3-port }}
+    - ${{ inputs.slave1-port }}
+    - ${{ inputs.slave2-port }}
+    - ${{ inputs.slave3-port }}
+    - ${{ inputs.slave3-port }}
